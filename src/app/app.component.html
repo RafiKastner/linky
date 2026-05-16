@@ -12,6 +12,10 @@
   </div>
   <div class="inline">
     <p class="output">{{output}}</p>
-    <button class="copy">⎘</button>
+    <button class="copy" 
+      [cdkCopyToClipboard]="output" 
+      (click)="handleClick()"
+      [class.regular]="copy"
+    >{{copy ? "copied!" : "⎘"}}</button>
   </div>
 </main>
