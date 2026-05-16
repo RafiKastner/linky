@@ -1,0 +1,109 @@
+@property --gradient-angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+
+.main {
+	--main-bg-color: #181818;
+	--text-white: #F7F7F7;
+	--accent-purple: rgb(74, 74, 213);
+	--accent-orange: #FF5722;
+	--accent-yellow: #FFEB3B;
+}
+
+.main {
+	font-family: 'Montserrat', sans-serif;
+	color: var(--text-white);
+	height: 100vh;
+	display: grid;
+	align-content: center;
+	justify-items: center;
+	gap: 1rem;
+}
+
+h1 { 
+ 	font-size: 6rem;
+	font-weight: 800;
+	color: var(--accent-purple);
+}
+
+p {
+	margin: 1rem;
+}
+
+.card {
+	position: relative;
+	background: var(--main-bg-color);
+	border-radius: .5rem;
+}
+@keyframes rotation {
+	0% { --gradient-angle: 0deg; }
+	100% { --gradient-angle: 360deg; }
+}
+.card::before,
+.card::after {
+	position: absolute;
+	content: "";
+	z-index: -1;
+	inset: -.2rem;
+	border-radius: inherit;
+	background: conic-gradient(
+		from var(--gradient-angle),
+		var(--accent-orange), 
+		var(--accent-yellow),
+		var(--accent-orange));
+	animation: rotation 5s linear infinite;
+}
+.card::after {
+	filter: blur(.4rem);
+}
+
+.justify-center {
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	border: none;
+	background-color: transparent;
+	font-size: 2rem;
+	padding: .5rem 1rem;
+	color: var(--text-color);
+	width: min(65vw, 40rem)
+}
+input:focus {
+	outline: none;
+}
+
+button {
+	color: var(--text-white);
+	font-weight: 700;
+}
+
+.submit {
+	position: relative;
+	font-size: 2rem;
+	padding: 1rem;
+	background-color: transparent;
+}
+
+.inline {
+	display: flex;
+	justify-content: center;
+}
+
+.output {
+	font-size: 1.5rem;
+	border-bottom: solid var(--text-white);
+}
+
+.copy {
+	position: relative;
+	top: -.5rem;
+	font-size: 2rem;
+}
+
+.invalid {
+	color: gray
+}
