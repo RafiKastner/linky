@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard'
-import { sleep } from '@anthropic-ai/sdk/core.mjs';
+import { ShortenService } from './injectables/configService'
 
 @Component({
   selector: 'app-root',
@@ -16,15 +16,19 @@ export class AppComponent {
   inputForm = new FormGroup({
     url: new FormControl('', Validators.required),
   })
+  shorten = new ShortenService
   handleSubmit() {
-    this.output = this.inputForm.value.url ? this.inputForm.value.url : '';
+    if (!this.inputForm.value.url) {
+      throw Error('Must have valid string for url')
+    }
+    this.shorten.getShorten(this.inputForm.value.url).subscribe((res) => {
+      this.output = res.shortUrl;
+    })
     this.inputForm.reset()
   }
   copy = false;
   handleClick() {
     this.copy = true
-    setTimeout(()=> {
-      this.copy = false;
-    }, 2000);
+    setTimeout(()=> this.copy = false, 2000);
   }
 }
