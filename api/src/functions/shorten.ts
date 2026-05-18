@@ -2,6 +2,7 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/fu
 import { collections, connectToDatabase, disconnectFromDatabase } from "../services/database.service";
 import { createLinkCode } from "../handlers/id";
 
+const redirect_route = 'c';
 
 export async function shorten(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     try {
@@ -24,12 +25,12 @@ export async function shorten(request: HttpRequest, context: InvocationContext):
             }
         }
 
-        let result = (await collections.links.findOne({ originalUrl: originalUrl }));
+        let result = await collections.links.findOne({ originalUrl: originalUrl });
         if (result) {
-            context.log(`Shorten function processed request for url "${request.url}"`);
+            context.log(`Shorten function processed request for url "${originalUrl}"`);
             return {
                 jsonBody: { 
-                    shortUrl: `${process.env.SITE_DOMAIN}/r/${result.code}`
+                    shortUrl: `${process.env.SITE_DOMAIN}/${redirect_route}/${result.code}`
                 }
             } 
         }
@@ -53,7 +54,7 @@ export async function shorten(request: HttpRequest, context: InvocationContext):
         context.log(`Shorten function processed request for url "${request.url}"`);
         return {
             jsonBody: { 
-                shortUrl: `${process.env.SITE_DOMAIN}/r/${code}`
+                shortUrl: `${process.env.SITE_DOMAIN}/${redirect_route}/${code}`
             } 
         };
 

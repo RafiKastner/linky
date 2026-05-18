@@ -12,6 +12,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "@angular/forms": "^21.2.13",
     "@azure/functions": "^4.0.0",
     "dotenv": "^17.4.2",
     "mongodb": "~7.2.0"

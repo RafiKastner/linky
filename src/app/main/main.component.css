@@ -1,15 +1,9 @@
+@import url('../shared.css');
+
 @property --gradient-angle {
 	syntax: "<angle>";
 	initial-value: 0deg;
 	inherits: false;
-}
-
-.main {
-	--main-bg-color: #181818;
-	--text-white: #F7F7F7;
-	--accent-purple: rgb(74, 74, 213);
-	--accent-orange: #FF5722;
-	--accent-yellow: #FFEB3B;
 }
 
 .main {

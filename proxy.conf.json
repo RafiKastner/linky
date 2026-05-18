@@ -3,5 +3,10 @@
 	  "target": "http://localhost:7071",
 	  "secure": false,
 	  "changeOrigin": true
+	},
+	"/r": {
+		"target": "http://localhost:4200/api/redirect",
+		"secure": false,
+		"changeOrigin": false
 	}
   }
