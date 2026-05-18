@@ -26,9 +26,6 @@ export class MainComponent {
     if (!this.inputForm.value.url) {
       throw Error('Must have valid string for url')
     }
-    if (!URL.canParse(this.inputForm.value.url)) {
-      throw Error('Invalid url submitted')
-    }
     this.api.getShorten(this.inputForm.value.url).subscribe((res) => {
       this.output = res.shortUrl;
     })
