@@ -15,7 +15,7 @@ export async function shorten(request: HttpRequest, context: InvocationContext):
             })
         }
 
-        connectToDatabase();
+        await connectToDatabase();
 
         const originalUrl = request.query.get('url');
         if (!originalUrl) {

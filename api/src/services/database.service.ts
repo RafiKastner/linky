@@ -1,7 +1,7 @@
 import * as mongoDB from "mongodb";
 import { LinkDocument } from "../models/link";
 
-export const collections: { links?: mongoDB.Collection<LinkDocument> } = {}
+export const collections  = {} as { links: mongoDB.Collection<LinkDocument> }
 
 const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
 

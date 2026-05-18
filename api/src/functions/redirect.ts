@@ -3,7 +3,15 @@ import { collections, connectToDatabase } from "../services/database.service";
 
 export async function redirect(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     try {
-        connectToDatabase()
+        await connectToDatabase()
+
+        if (!collections?.links) {
+           console.log("Redirect function could not find 'links' category");
+           return {
+            status: 404,
+            body: "No 'links' category found!",
+           } 
+        }
 
         const code = request.query.get('code');
         if (!code) {
@@ -13,7 +21,7 @@ export async function redirect(request: HttpRequest, context: InvocationContext)
             }
         }
 
-        const result = await collections.links.findOne({ code: code })
+        const result = await collections?.links.findOne({ code: code })
         if (result) {
             context.log(`Redirect function processed request for redirect code "${code}"`);
             return {
@@ -28,7 +36,10 @@ export async function redirect(request: HttpRequest, context: InvocationContext)
             body: `Could not find redirect with given code ${code}`
         }
     } catch(err) {
-        throw Error(err)
+        return {
+            status: 400,
+            jsonBody: err || 'Undefined Error',
+        }
     }
 };
 
