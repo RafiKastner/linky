@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ReactiveFormsModule, FormControl, FormGroup, Validators, ValidatorFn, 
+  ValidationErrors, AbstractControl } from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { ApiService } from '../injectables/apiService'
 
@@ -14,12 +15,19 @@ export class MainComponent {
   title = 'linky';
   output: string = "Output";
   inputForm = new FormGroup({
-    url: new FormControl('', Validators.required),
+    url: new FormControl('', [Validators.required, 
+      (control: AbstractControl): ValidationErrors | null => 
+        (!/\../.test(control.value)) 
+          ? { forbiddenUrl: { value: control.value } } : null
+    ]),
   })
   api = inject(ApiService)
   handleSubmit() {
     if (!this.inputForm.value.url) {
       throw Error('Must have valid string for url')
+    }
+    if (!URL.canParse(this.inputForm.value.url)) {
+      throw Error('Invalid url submitted')
     }
     this.api.getShorten(this.inputForm.value.url).subscribe((res) => {
       this.output = res.shortUrl;
