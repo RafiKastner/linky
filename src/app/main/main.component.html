@@ -11,7 +11,12 @@
     </form>
   </div>
   <div class="inline">
-    <p class="output">{{output}}</p>
+    @if (output == "Output") {
+      <p class="output">{{output}}</p>
+    } @else {
+      <a class="output" [routerLink]="output.split('/').slice(1).join('/')">{{output}}</a> 
+      <!--remove domain name from url-->
+    }
     <button class="copy" 
       [cdkCopyToClipboard]="output" 
       (click)="handleClick()"

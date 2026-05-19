@@ -22,8 +22,9 @@ h1 {
 	color: var(--accent-purple);
 }
 
-p {
+a, p {
 	margin: 1rem;
+	text-decoration: none;
 }
 
 .card {

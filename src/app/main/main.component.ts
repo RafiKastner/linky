@@ -3,11 +3,12 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators, ValidatorFn,
   ValidationErrors, AbstractControl } from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { ApiService } from '../injectables/apiService'
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, ClipboardModule],
+  imports: [ReactiveFormsModule, ClipboardModule, RouterLink],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -26,6 +27,7 @@ export class MainComponent {
     if (!this.inputForm.value.url) {
       throw Error('Must have valid string for url')
     }
+    this.output = "Loading..."
     this.api.getShorten(this.inputForm.value.url).subscribe((res) => {
       this.output = res.shortUrl;
     })
