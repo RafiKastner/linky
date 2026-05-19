@@ -3,10 +3,14 @@ import { LinkDocument } from "../models/link";
 
 export const collections  = {} as { links: mongoDB.Collection<LinkDocument> }
 
-const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
+const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STRING, {
+	serverSelectionTimeoutMS: 5000,
+});
 
 export async function connectToDatabase() {
+	console.log('connecting to mongo db...')
 	await client.connect();
+	console.log('connection to mongo complete')
 
 	const db: mongoDB.Db = client.db(process.env.DB_NAME);
 	const linksCollection: mongoDB.Collection<LinkDocument> = db.collection(process.env.LINK_COLLECTION_NAME);
