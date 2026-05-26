@@ -5,6 +5,22 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
 import { ApiService } from '../injectables/apiService'
 import { RouterLink } from "@angular/router";
 
+/*
+TODO:
+- Footer
+  - github link, docs link
+- docs
+  - just a page to say get at this and this for shorten and whatnot
+- readme
+- not so important but
+- page when shortened link is loading
+  - no auto redirect? at least a countdown
+    - for safety or whatever
+  - link to click in case wont auto redirect
+
+
+*/
+
 @Component({
   selector: 'app-root',
   standalone: true,

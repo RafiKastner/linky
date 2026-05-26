@@ -1,10 +1,10 @@
-<main class="main">
+<main class="main colors">
   <h1>Linky</h1>
   <p>Put in link and get it shorter</p>
   <br>
   <div class="card">
     <form class="justify-center" [formGroup]="inputForm" (ngSubmit)="handleSubmit()">
-      <input placeholder="Your link.." type="url" formControlName="url">
+      <input placeholder="Your link..." type="url" formControlName="url">
       <button type="submit" [disabled]="!inputForm.valid">
         <span class="submit" [class.invalid]="!inputForm.valid">⇒</span>
       </button>

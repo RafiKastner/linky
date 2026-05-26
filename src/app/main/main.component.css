@@ -25,6 +25,8 @@ h1 {
 a, p {
 	margin: 1rem;
 	text-decoration: none;
+	max-width: 80vw;
+	overflow-wrap: break-word;
 }
 
 .card {
