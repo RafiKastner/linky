@@ -1,0 +1,27 @@
+<main class="colors">
+	<div class="offset">
+		<h1>API Docs</h1>
+		<p>The api is free cause I don't expect many people to use this.</p>
+	</div>
+	<div class="center">
+		<p>
+			<span>To get a link shortened, </span>
+			<span class="yellow">GET </span>
+			<span> at /api/shorten?url={{'{}'}} where </span>
+			<span class="yellow">{{'{}'}} </span>
+			<span>is the link to be shortened. This
+				returns a JSON where the 'shortUrl' property is the 
+				alphanumeric code for the url.
+			</span>
+		</p>
+		<br>
+		<p>
+			<span>To get the link back, </span>
+			<span class="yellow">GET </span>
+			<span> at /api/redirect?code={{'{}'}} </span>
+			<span>where {{'{}'}} is the code from before. This returns
+				a JSON where the 'originalUrl' property is the url string.
+			</span>
+		</p>
+	</div>
+</main>

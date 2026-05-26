@@ -1,0 +1,37 @@
+@import url('../shared.css');
+
+main {
+	color: var(--text-white);
+	height: 100vh;
+	padding: 5rem 0;
+}
+
+h1 {
+	font-size: 4rem;
+	font-weight: bold;
+	color: var(--accent-purple)
+}
+
+.offset {
+	place-self: center;
+	margin: 0 30vw 0 0;
+}
+
+.center {
+	margin: 2rem;
+	place-items: center;
+	place-self: center;
+	width: min(40rem, 70vw);
+}
+
+.yellow {
+	color: var(--accent-yellow)
+}
+
+.orange {
+	color: var(--accent-orange)
+}
+
+.purple {
+	color: var(--accent-purple)
+}
