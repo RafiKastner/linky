@@ -2,5 +2,9 @@
 	"navigationFallback": {
 	  "rewrite": "/index.html",
 	  "exclude": ["/assets/*", "/*.css", "/*.js", "/*.ico"]
+	},
+	"globalHeaders": {
+		"Access-Control-Allow-Origin": "*",
+    	"Access-Control-Allow-Methods": "GET"
 	}
   }
